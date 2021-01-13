@@ -1,23 +1,50 @@
 import logo from './logo.svg';
 import './App.css';
+import './data';
+import ACTOR_DATA from './data';
+
+const data = ACTOR_DATA.cast;
+const imageURL = 'https://image.tmdb.org/t/p/original';
+
+function ActorList(props){
+  return (
+    <div>
+      <h2>Hi, {props.name}</h2>
+      <ActorItem />
+    </div>
+  );
+}
+
+function ActorItem(props){
+  return(
+    <>
+
+      <div>
+        <ul>{data.map(item => <li key={item.id}> 
+          <img src={imageURL+item.profile_path} alt=""/>
+          {item.name}
+          <br/>
+          {/* {item.character} */}
+
+          <hr/>
+          {item.character}
+        </li>)}
+        
+        
+        </ul>
+      </div>
+      
+      
+    </>
+  );
+}
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Welcome to movie world</h2>
+      <ActorList name={"This is our team"} />
     </div>
   );
 }
